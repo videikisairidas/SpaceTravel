@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ section.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ section.title }}</h1>
+
+
+<div class="homepage">
+    <div>
+        <a href="{% url 'planets:index'%}"><img src="{% static '/image/planet.jpg' %}" alt="Red dot" /></a>
+    </div>
+    <div>
+        <a href="{% url 'stars:index'%}"><img src="{% static '/image/star.jpg' %}" alt="Red dot" /></a>
+    </div>
+    <div>
+        <a href="{% url 'comet:index'%}"><img src="{% static '/image/comet.jpg' %}" alt="Red dot" /></a>
+    </div>
+    
+    
+</div>
+
+{% endblock %}

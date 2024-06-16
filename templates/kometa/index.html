@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Comet Viewer{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+<style>
+    /* Additional styles specific to this template if needed */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container flex flex-column justify-center align-center" style="height: 100vh;">
+    <!-- Top Left Buttons -->
+    <div style="position: absolute; top: 20px; left: 20px;">
+        <button class="btn btn-primary" onclick="goToHome()">Home</button>
+        <button class="btn btn-primary" onclick="goToStarsList()">Stars List</button>
+    </div>
+
+    <!-- Top Center Drop Bar (Select a Comet) -->
+    <div style="position: absolute; top: 20px; text-align: center; width: 100%;">
+        <label for="comet-select">Select a comet:</label>
+        <select id="comet-select" class="form-control">
+            <option value="">Select a comet</option>
+            {% for comet in comets %}
+            <option value="{{ comet.id }}">{{ comet.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Center Image -->
+    <div class="flex justify-center align-center" style="flex-grow: 1;">
+        <img id="comet-image" src="{% static 'placeholder.jpg' %}" alt="Comet Image"
+            style="max-width: 80%; max-height: 80%;">
+    </div>
+
+    <!-- Comet Details -->
+    <div id="comet-details" style="position: absolute; bottom: 20px; text-align: center; width: 100%;">
+        <h3>Comet Details</h3>
+        <label for="comet-size">Size:</label>
+        <select id="comet-size" class="form-control">
+            <option value="">Select size</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+        <br>
+        <label for="comet-color">Color:</label>
+        <select id="comet-color" class="form-control">
+            <option value="">Select color</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+        </select>
+        <br>
+        <div>
+            <input type="checkbox" id="comet-tail">
+            <label for="comet-tail">Tail</label>
+        </div>
+    </div>
+
+    <!-- Left and Right Center Navigation Buttons -->
+    <div style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%);">
+        <button class="btn btn-secondary" onclick="navigateToComet('prev')">Previous</button>
+    </div>
+    <div style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%);">
+        <button class="btn btn-secondary" onclick="navigateToComet('next')">Next</button>
+    </div>
+</div>
+
+<script>
+    // JavaScript functions (simulated)
+    document.addEventListener('DOMContentLoaded', function () {
+        const cometSelect = document.getElementById('comet-select');
+        const cometSize = document.getElementById('comet-size');
+        const cometColor = document.getElementById('comet-color');
+        const cometTail = document.getElementById('comet-tail');
+
+        cometSelect.addEventListener('change', function () {
+            const cometId = this.value;
+            if (cometId) {
+                fetch(`/comet/details/${cometId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        cometSize.value = data.size;
+                        cometColor.value = data.color;
+                        cometTail.checked = data.tail;
+                    })
+                    .catch(error => console.error('Error fetching comet details:', error));
+            } else {
+                cometSize.value = '';
+                cometColor.value = '';
+                cometTail.checked = false;
+            }
+        });
+    });
+
+    function goToHome() {
+        // Implement logic to navigate home
+    }
+
+    function goToStarsList() {
+        // Implement logic to navigate to stars list
+    }
+
+    function navigateToComet(direction) {
+        // Implement navigation logic
+    }
+</script>
+
+{% endblock %}

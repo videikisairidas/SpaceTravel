@@ -1,0 +1,292 @@
+/* Reset some basic elements for consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define base font styles */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Link styles */
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 1rem;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Flexbox utilities */
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #004a99;
+}
+
+.btn-secondary {
+    background-color: #ccc;
+    color: #333;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #999;
+}
+
+/* Form elements */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #0066cc;
+    outline: none;
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+body {
+    background: white;
+}
+header {
+    margin: 0 0 40px 0;
+    height: auto;
+}
+.homepage {
+    margin: 20px 0 0 0;
+    padding: 20px 0 0 0;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-wrap: nowrap;
+    max-height: 80vh;
+}
+.homepage > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid black;
+}
+.homepage > div img {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    transition: transform .4s;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+.homepage > div:hover img{
+    transform: scale(1.3);
+}
+#mainContainer {
+    display: flex;
+    border: 2px solid black;
+}
+#mainContainer > div:first-child {
+    position: relative;
+    width: 70%;
+    overflow: hidden;
+}
+#mainContainer > div:first-child img {
+    width: 100%;
+}
+#mainContainer > div:last-child {
+    width: 30%;
+}
+#mainContainer > div:last-child  p {
+    padding: 20px;
+}
+.prev {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.next {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.planetform, .objectform {
+    display: flex;
+    width: 300px;
+    margin: 0 0 20px;
+}
+.planetform input, .objectform input {
+    width: 80px;
+    display: block;
+    /* margin: 0 20px; */
+    /* padding: 0px 0px; */
+    margin-left: 20px;
+}
+.planetform input:hover, .objectform input:hover {
+    background: blue;
+    color: white;
+    cursor: pointer;
+}

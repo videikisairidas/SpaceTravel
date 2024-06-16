@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <!-- Add any CSS or other meta tags here -->
+</head>
+
+<body>
+    <header>
+        <!-- Navigation links -->
+        <div>
+            <a class="btn btn-primary" href="{% url 'home:index'%}">Home</a>
+            <a class="btn btn-primary" href="{% url 'planets:index'%}">Planets</a>
+            <a class="btn btn-primary" href="{% url 'stars:index'%}">Stars</a>
+            <a class="btn btn-primary" href="{% url 'comet:index'%}">Comets</a>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content from child templates will go here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+    <!-- <script type="text/javascript">
+        function handleSelect(elm)
+        {
+            window.location.href
+            mystring =  window.location.href + "?planet=" + elm.value
+            console.log( mystring)
+           window.location = elm.value;
+        }
+    </script> -->
+</body>
+
+</html>
