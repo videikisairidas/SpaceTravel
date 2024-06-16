@@ -1,2 +1,2 @@
 # SpaceTravel
-SpaceTravel and ai generating image with rapid apie
+SpaceTravel and ai generating image with rapid api
