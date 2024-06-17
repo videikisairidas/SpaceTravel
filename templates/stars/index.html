@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Star Viewer{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+<style>
+    /* Additional styles specific to this template if needed */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container flex flex-column justify-center align-center" style="height: 100vh;">
+    <!-- Top Left Buttons -->
+    <div style="position: absolute; top: 20px; left: 20px;">
+        <button class="btn btn-primary" onclick="goToHome()">Home</button>
+        <button class="btn btn-primary" onclick="goToStarsList()">Stars List</button>
+    </div>
+
+    <!-- Top Center Drop Bar (Select a Star) -->
+    <div style="position: absolute; top: 20px; text-align: center; width: 100%;">
+        <label for="star-select">Select a star:</label>
+        <select id="star-select" class="form-control">
+            <option value="">Select a star</option>
+            {% for star in stars %}
+            <option value="{{ star.id }}">{{ star.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Center Image -->
+    <div class="flex justify-center align-center" style="flex-grow: 1;">
+        <img id="star-image" src="{% static 'placeholder.jpg' %}" alt="Star Image"
+            style="max-width: 80%; max-height: 80%;">
+    </div>
+
+    <!-- Star Details -->
+    <div id="star-details" style="position: absolute; bottom: 20px; text-align: center; width: 100%;">
+        <h3>Star Details</h3>
+        <label for="star-size">Size:</label>
+        <select id="star-size" class="form-control">
+            <option value="">Select size</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+        <br>
+        <label for="star-temperature">Temperature:</label>
+        <select id="star-temperature" class="form-control">
+            <option value="">Select temperature</option>
+            <option value="Hot">Hot</option>
+            <option value="Warm">Warm</option>
+            <option value="Cool">Cool</option>
+        </select>
+        <br>
+        <label for="star-color">Color:</label>
+        <select id="star-color" class="form-control">
+            <option value="">Select color</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow</option>
+        </select>
+    </div>
+
+    <!-- Left and Right Center Navigation Buttons -->
+    <div style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%);">
+        <button class="btn btn-secondary" onclick="navigateToStar('prev')">Previous</button>
+    </div>
+    <div style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%);">
+        <button class="btn btn-secondary" onclick="navigateToStar('next')">Next</button>
+    </div>
+</div>
+
+<script>
+    // JavaScript functions (simulated)
+    document.addEventListener('DOMContentLoaded', function () {
+        const starSelect = document.getElementById('star-select');
+        const starSize = document.getElementById('star-size');
+        const starTemperature = document.getElementById('star-temperature');
+        const starColor = document.getElementById('star-color');
+
+        starSelect.addEventListener('change', function () {
+            const starId = this.value;
+            if (starId) {
+                fetch(`/star/details/${starId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        starSize.value = data.size;
+                        starTemperature.value = data.temperature;
+                        starColor.value = data.color;
+                    })
+                    .catch(error => console.error('Error fetching star details:', error));
+            } else {
+                starSize.value = '';
+                starTemperature.value = '';
+                starColor.value = '';
+            }
+        });
+    });
+
+    function goToHome() {
+        // Implement logic to navigate home
+    }
+
+    function goToStarsList() {
+        // Implement logic to navigate to stars list
+    }
+
+    function navigateToStar(direction) {
+        // Implement navigation logic
+    }
+</script>
+
+{% endblock %}
