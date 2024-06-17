@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}planets Viewer{% endblock %}
+
+{% block extracss %}
+
+{% endblock %}
+
+{% block content %}
+
+<form class='planetform' action="{% url 'planets:index' %}" method="get">
+    <select name="planet" id="planet">
+        {% for planet in planetsList %}
+        <option {% if selectedPlanet == planet.name %}selected{% endif %} value={{planet.name}}>{{planet.name}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="search">
+ </form>
+
+ {% if objects %}
+ <form class='objectform' action="{% url 'planets:index' %}" method="get">
+    <input type="hidden" name="planet" id="planet" value="{{selectedPlanet}}">
+    <select name="objectID" id="objectID">
+        {% for object in objects %}
+        <option  {% if selectedObject == object.id %}selected{% endif %} value={{object.id}}>{{object.name}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="search">
+ </form>
+ {% endif %}
+
+ <div id="mainContainer">
+    <div>
+        <div class="prev ">
+            <form action="{% url 'planets:index' %}" method="get">
+                <input type="hidden" name="planet" id="planet" value="{{prev_planet}}">
+                {% if prev_object %}
+                <input type="hidden" name="objectID" id="objectID" value="{{prev_object}}">
+                {% endif %}
+                <input type="submit" value="prev">
+            </form>
+        </div>
+        <img src="data:image/png;base64,{{ imageurl }}" alt="Red dot" />
+        <div class="next ">
+            <form action="{% url 'planets:index' %}" method="get">
+                <input type="hidden" name="planet" id="planet" value="{{next_planet}}">
+                {% if next_object %}
+                <input type="hidden" name="objectID" id="objectID" value="{{next_object}}">
+                {% endif %}
+                <input type="submit" value="next">
+            </form>
+        </div>
+    </div>
+    <div>
+        <p>{{ text }}</p>
+    </div>
+ </div>
+{% endblock %}
